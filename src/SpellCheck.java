@@ -19,6 +19,15 @@ public class SpellCheck {
      */
     public String[] checkWords(String[] text, String[] dictionary) {
 
+        boolean[] arr = new boolean[1140000];
+
+        for (int i = 0; i < arr.length; i++) {
+            if (i % 3 == 0)
+                arr[i] = true;
+            else
+                arr[i] = false;
+        }
+
         return null;
     }
 }
