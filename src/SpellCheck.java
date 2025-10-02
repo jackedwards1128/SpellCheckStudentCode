@@ -29,7 +29,7 @@ public class SpellCheck {
 
     public String[] checkWords(String[] text, String[] dictionary) {
 
-        createTree(dictionary);
+//        createTree(dictionary);
 
         Set<String> misspelled_words = new HashSet<>();
 
@@ -37,46 +37,22 @@ public class SpellCheck {
 
         int counter = 0;
 
+        Trie trie = new Trie();
+
+        for (String word : dictionary) {
+            trie.insert(word);
+        }
+
         for (String word : text) {
-            counter++;
-            if (text.length != 8 && counter % (text.length/10) == 0)
-                System.out.println("Parsed through " + round(((double)counter/text.length) * 10) + "0%");
-
-            boolean problem = false;
-            LargeNode position = root;
-
-            for (int i = 0; i < word.length(); i++) {
-                if (position.first_child == null) {
-                    problem = true;
-                    break;
-                }
-
-                position = position.first_child;
-                while (position.letter != word.charAt(i)) {
-                    if (position.next_sibling == null) {
-                        problem = true;
-                        break;
-                    }
-                    position = position.next_sibling;
-                }
-                if (problem)
-                    break;
-            }
-            if (!position.valid) {
-                problem = true;
-            }
-
-            if (problem) {
+            if (!trie.search(word)) {
                 if (!misspelled_words.contains(word)) {
                     misspelled_words.add(word);
                     error_words.add(word);
                 }
-
-                continue;
             }
-
-
         }
+
+
         System.out.println("done parsing");
 
         String[] errors = error_words.toArray(new String[misspelled_words.size()]);
@@ -84,14 +60,14 @@ public class SpellCheck {
         System.out.println("done paring dupes");
 
 
-        System.out.print("[");
-        for (int i = 0; i < errors.length; i++) {
+//        System.out.print("[");
+//        for (int i = 0; i < errors.length; i++) {
 //            errors[i] = misspelled_words.remove(0);
-            System.out.print(errors[i] + ", ");
-            if ((i+1) % 20 == 0)
-                System.out.println();
-        }
-        System.out.println("]");
+//            System.out.print(errors[i] + ", ");
+//            if ((i+1) % 20 == 0)
+//                System.out.println();
+//        }
+//        System.out.println("]");
 
         return errors;
     }
