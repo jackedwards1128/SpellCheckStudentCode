@@ -10,7 +10,7 @@ import java.util.HashSet;
  * for Adventures in Algorithms
  * At Menlo School in Atherton, CA
  *
- * Completed by: [YOUR NAME HERE]
+ * Completed by: Jack Edwards
  * */
 
 public class SpellCheck {
@@ -37,14 +37,15 @@ public class SpellCheck {
 
         int counter = 0;
 
-        Trie trie = new Trie();
+        Trie dict = new Trie();
+//        TST dict = new TST();
 
         for (String word : dictionary) {
-            trie.insert(word);
+            dict.insert(word);
         }
 
         for (String word : text) {
-            if (!trie.search(word)) {
+            if (!dict.search(word)) {
                 if (!misspelled_words.contains(word)) {
                     misspelled_words.add(word);
                     error_words.add(word);

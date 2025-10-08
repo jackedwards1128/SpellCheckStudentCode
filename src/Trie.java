@@ -14,7 +14,7 @@ public class Trie {
             // Apostrophe
             if (letterNum == -58)
                 letterNum = 26;
-                // Hyphen
+                // Misc
             else if (letterNum > 26 || letterNum < 0)
                 letterNum = 27;
 
@@ -37,8 +37,8 @@ public class Trie {
             // Apostrophe
             if (letterNum == -58)
                 letterNum = 26;
-            // Hyphen
-            else if (letterNum == -52)
+            // Misc
+            else if (letterNum > 26 || letterNum < 0)
                 letterNum = 27;
 
             if (position.getChild(letterNum) == null) {
