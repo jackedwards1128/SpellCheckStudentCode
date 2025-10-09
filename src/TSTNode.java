@@ -15,18 +15,22 @@ public class TSTNode {
         return isWord;
     }
 
+    // Returns the requested child
     public TSTNode getChild(int index) {
         return children[index];
     }
 
+    // Sets the node's validity of the word to true
     public void setWord() {
         isWord = true;
     }
 
+    // Returns the letter that the node stores
     public char getLetter() {
         return  letter;
     }
 
+    // Adds a child to the node at a given index
     public void setChild(int index, char letter) {
         children[index] = new TSTNode(letter);
     }
